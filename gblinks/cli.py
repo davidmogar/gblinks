@@ -6,11 +6,12 @@ import sys
 
 from gblinks import Gblinks
 
-def check_broken_links(gblinks):
+def check_broken_links(gblinks, verbose):
     broken_links = gblinks.check_broken_links()
 
     if broken_links:
-        print_links(broken_links)
+        if verbose:
+            print_links(broken_links)
 
         click.echo(
             click.style(
@@ -36,12 +37,13 @@ def print_links(links):
 @click.argument('path')
 @click.option('--check/--no-check', default=False)
 @click.option('--list/--no-list', default=False)
-def main(path, check, list):
+@click.option('--verbose/--no-verbose', default=False)
+def main(path, check, list, verbose):
     try:
         gblinks = Gblinks(path)
 
         if check:
-            check_broken_links(gblinks)
+            check_broken_links(gblinks, verbose)
 
         if list:
             list_links(gblinks)
