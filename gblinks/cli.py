@@ -37,7 +37,7 @@ def print_links(links):
 @click.argument('path')
 @click.option('--check/--no-check', default=False)
 @click.option('--list/--no-list', default=False)
-@click.option('--verbose/--no-verbose', default=False)
+@click.option('--verbose/--no-verbose', default=True)
 def main(path, check, list, verbose):
     try:
         gblinks = Gblinks(path)
