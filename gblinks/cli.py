@@ -19,7 +19,7 @@ def check_broken_links(gblinks):
             )
         )
 
-        sys.exit(-1)
+        sys.exit(-2)
     else:
         click.echo('No broken links found in the given path')
 
@@ -37,13 +37,17 @@ def print_links(links):
 @click.option('--check/--no-check', default=False)
 @click.option('--list/--no-list', default=False)
 def main(path, check, list):
-    gblinks = Gblinks(path)
+    try:
+        gblinks = Gblinks(path)
 
-    if check:
-        check_broken_links(gblinks)
+        if check:
+            check_broken_links(gblinks)
 
-    if list:
-        list_links(gblinks)
+        if list:
+            list_links(gblinks)
+    except ValueError, e:
+        click.echo(click.style(str(e), fg='red'))
+        sys.exit(-1)
 
 if __name__ == "__main__":
     main()
