@@ -29,12 +29,12 @@ class Gblinks:
 
     def __init__(self, path):
         if not os.path.isdir(path):
-            raise ValueError('the given path is not valid')
+            raise ValueError('The given path is not valid')
 
         self.__mdfiles = self._get_markdown_files(path)
 
         if not self.__mdfiles:
-            raise ValueError('the given path does not contain MarkDown files')
+            raise ValueError('The given path does not contain MarkDown files')
 
     def _files_iterator(self, path, pattern='*.md'):
         for root, dirs, files in os.walk(path):
@@ -45,15 +45,16 @@ class Gblinks:
         return list(self._files_iterator(path))
 
     def _link_iterator(self, markdown_file):
-        with open(markdown_file, 'r') as file:
-            data = file.read()
+        if os.stat(markdown_file).st_size != 0:
+            with open(markdown_file, 'r') as file:
+                data = file.read()
 
-            doc = html.fromstring(markdown.markdown(data))
-            for link in doc.xpath('//a'):
-                href = link.get('href')
+                doc = html.fromstring(markdown.markdown(data))
+                for link in doc.xpath('//a'):
+                    href = link.get('href')
 
-                if href and not bool(re.search('{{.*}}', href)):
-                  yield link.text, href
+                    if href and not bool(re.search('{{.*}}', href)):
+                        yield link.text, href
 
     def check_broken_links(self):
         return self.get_links(only_broken=True, only_local=True)
