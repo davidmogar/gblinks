@@ -21,7 +21,7 @@ test_requirements = [
 
 setup(
     name='gblinks',
-    version='0.2.2',
+    version='0.2.4',
     description="Python tool to list and check GitBook links",
     long_description=readme + '\n\n' + history,
     author="David Moreno García",

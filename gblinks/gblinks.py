@@ -36,9 +36,9 @@ class Gblinks:
         if not self.__mdfiles:
             raise ValueError('The given path does not contain MarkDown files')
 
-    def _files_iterator(self, path, pattern='*.md'):
+    def _files_iterator(self, path):
         for root, dirs, files in os.walk(path):
-            for file in fnmatch.filter(files, pattern):
+            for file in fnmatch.filter(files, '*.md'):
                 yield root, file
 
     def _get_markdown_files(self, path):
@@ -66,7 +66,9 @@ class Gblinks:
             markdown_file = os.path.join(path, file)
             for link_text, link_url in self._link_iterator(markdown_file):
                 if not only_local or not is_url(link_url):
-                    link_path = os.path.join(path, link_url)
+                    link_path = os.path.join(path, link_url.split('#')[0])
+                    if os.path.isdir(link_path):
+                        link_path = os.path.join(link_path, 'README.md')
                     if not only_broken or not os.path.exists(link_path):
                         links.append(get_link_dict(markdown_file, link_text, link_url, link_path))
 
