@@ -14,6 +14,7 @@ setup(
     name='gblinks',
     version=version,
     description="Python tool to find out broken GitBook links",
+    long_description=open('README.rst').read(),
     author="David Moreno García",
     author_email='david.mogar@gmail.com',
     url='https://github.com/davidmogar/gblinks',
