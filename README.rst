@@ -1,5 +1,6 @@
+=======
 gblinks
-===============================
+=======
 
 Broken links!
 
@@ -38,7 +39,8 @@ This is the easier part. You only have to run the next command:
 The output will be something similar to this:
 
 .. code:: json
-		[
+
+    [
         {
     		    "file": "my_gitbook/README.md",
     		    "link_path": "my_gitbook/chapter2/README.md",
