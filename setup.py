@@ -5,9 +5,6 @@ import re
 
 from setuptools import setup
 
-with open('README.rst') as readme_file:
-    readme = readme_file.read()
-
 version = re.search(
     '^__version__\s*=\s*\'(.*)\'',
     open('gblinks/__init__.py').read(),
@@ -17,7 +14,6 @@ setup(
     name='gblinks',
     version=version,
     description="Python tool to find out broken GitBook links",
-    long_description=readme,
     author="David Moreno García",
     author_email='david.mogar@gmail.com',
     url='https://github.com/davidmogar/gblinks',
