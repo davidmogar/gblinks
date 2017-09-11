@@ -42,17 +42,17 @@ The output will be something similar to this:
 
     [
         {
-    		    "file": "my_gitbook/README.md",
-    		    "link_path": "my_gitbook/chapter2/README.md",
-        		"link_text": "chapter 2",
-		        "link_url": "#chapter2"
-    		},
-    		{
-        		"file": "my_gitbook/README.md",
-    		    "link_path": "my_gitbook/chapter10/contributors.md",
-        		"link_text": "Contributors for this chapter",
-		        "link_url": "#contributors"
-    		}
+            "file": "my_gitbook/README.md",
+            "link_path": "my_gitbook/chapter2/README.md",
+            "link_text": "chapter 2",
+            "link_url": "#chapter2"
+        },
+        {
+            "file": "my_gitbook/README.md",
+            "link_path": "my_gitbook/chapter10/contributors.md",
+            "link_text": "Contributors for this chapter",
+            "link_url": "#contributors"
+        }
     ]
 
 You can also remove the verbose flag to get only a warning with the number of broken links.
