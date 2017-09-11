@@ -2,39 +2,67 @@
 gblinks
 ===============================
 
+Broken links!
 
-.. image:: https://img.shields.io/pypi/v/gblinks.svg
-        :target: https://pypi.python.org/pypi/gblinks
+Oh man, Gitbook is such a nice tool to handle your documentation, but is so easy to mess it up and add broken links here and there, right?
 
-.. image:: https://img.shields.io/travis/davidmogar/gblinks.svg
-       :target: https://travis-ci.org/davidmogar/gblinks
+Gblinks is a easy to use tool to detect those links on time so you can fix it before publishing your documentation. It can even be integrated in your CI workflow!
 
-.. image:: https://readthedocs.org/projects/gblinks/badge/?version=latest
-        :target: https://gblinks.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
+Cool, where do I get it?
+------------------------
 
-.. image:: https://pyup.io/repos/github/davidmogar/gblinks/shield.svg
-     :target: https://pyup.io/repos/github/davidmogar/gblinks/
-     :alt: Updates
+Make it easy and get it from pip:
 
+::
 
-Python tool to list and check GitBook links
+    $ pip install gblinks
 
+If the version there is a bit outdated or you need a patch that is not in master yet, you can get it directly from GitHub:
 
-* Free software: MIT license
-* Documentation: https://gblinks.readthedocs.io.
+::
 
+    $ git clone https://github.com/davidmogar/gblinks.git
+    $ cd gblinks
+    $ python setup.py install
 
-Features
---------
+And now what?
+-------------
 
-* TODO
+Now you use it ;)
 
-Credits
----------
+This is the easier part. You only have to run the next command:
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+::
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+    $ gblinks -v PATH_TO_YOUR_GITBOOK
 
+The output will be something similar to this:
+
+.. code:: json
+		[
+        {
+    		    "file": "my_gitbook/README.md",
+    		    "link_path": "my_gitbook/chapter2/README.md",
+        		"link_text": "chapter 2",
+		        "link_url": "#chapter2"
+    		},
+    		{
+        		"file": "my_gitbook/README.md",
+    		    "link_path": "my_gitbook/chapter10/contributors.md",
+        		"link_text": "Contributors for this chapter",
+		        "link_url": "#contributors"
+    		}
+    ]
+
+You can also remove the verbose flag to get only a warning with the number of broken links.
+
+If your want to check what options you can use with gblinks, just run the next command:
+
+::
+
+		$ gblinks --help
+
+I have a fix/new feature
+------------------------
+
+That's great. Contributors are always welcome. Just send a pull request and be part of gblinks!

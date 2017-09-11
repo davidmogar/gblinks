@@ -30,23 +30,23 @@ def list_links(gblinks):
     click.echo('%d links found in the given path' % len(links))
 
 def print_links(links):
-    for link in links:
-        click.echo(json.dumps(link, sort_keys=True, indent=4))
+    #for link in links:
+    click.echo(json.dumps(links, sort_keys=True, indent=4))
 
 @click.command()
 @click.argument('path')
-@click.option('--check/--no-check', default=False)
-@click.option('--list/--no-list', default=False)
-@click.option('--verbose/--no-verbose', default=True)
-def main(path, check, list, verbose):
+@click.option('--list', is_flag=True,
+              help='List all the links in the Gitbook, stopping gblinks from detecting broken links')
+@click.option('--verbose', '-v', is_flag=True,
+              help='Increase the verbosity of gblinks')
+def main(path, list, verbose):
     try:
         gblinks = Gblinks(path)
 
-        if check:
-            check_broken_links(gblinks, verbose)
-
         if list:
             list_links(gblinks)
+        else:
+            check_broken_links(gblinks, verbose)
     except ValueError, e:
         click.echo(click.style(str(e), fg='red'))
         sys.exit(-1)
