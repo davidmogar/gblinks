@@ -4,9 +4,9 @@ gblinks
 
 Broken links!
 
-Oh man, Gitbook is such a nice tool to handle your documentation, but is so easy to mess it up and add broken links here and there, right?
+Oh man, Gitbook is such a nice tool to handle your documentation, but it's so easy to mess it up and add broken links here and there, right?
 
-Gblinks is a easy to use tool to detect those links on time so you can fix it before publishing your documentation. It can even be integrated in your CI workflow!
+Gblinks is a easy to use tool to detect those links on time so you can fix them before publishing your documentation. The process can even be integrated in your CI workflow!
 
 Cool, where do I get it?
 ------------------------
@@ -65,4 +65,4 @@ If your want to check what options you can use with gblinks, just run the next c
 I have a fix/new feature
 ------------------------
 
-That's great. Contributors are always welcome. Just send a pull request and be part of gblinks!
+That's great. Contributors are always welcomed. Just send a pull request and be part of gblinks!
