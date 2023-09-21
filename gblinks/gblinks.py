@@ -5,15 +5,27 @@ import markdown
 import os
 import re
 import sys
-import urlparse
 
+from urllib.parse import urlparse
+
+from importlib import reload
 from lxml import html
 
-reload(sys)
-sys.setdefaultencoding('utf8')
+
+# import urlparse python 2/3
+if sys.version[0] == '2':
+	from urlparse import urlparse
+else:
+	from urllib.parse import urlparse	
+
+# if python 2, reload sys with encoding
+if sys.version[0] == '2':
+    reload(sys)
+    sys.setdefaultencoding("utf-8")
+
 
 def is_url(url):
-    return urlparse.urlparse(url).scheme != ''
+    return urlparse(url).scheme != ''
 
 def get_link_dict(file, link_text, link_url, link_path):
      data = {}
@@ -46,7 +58,7 @@ class Gblinks:
 
     def _link_iterator(self, markdown_file):
         if os.stat(markdown_file).st_size != 0:
-            with open(markdown_file, 'r') as file:
+            with open(markdown_file, 'r', encoding='utf-8') as file:
                 data = file.read()
 
                 doc = html.fromstring(markdown.markdown(data))
@@ -65,7 +77,7 @@ class Gblinks:
         for path, file in self.__mdfiles:
             markdown_file = os.path.join(path, file)
             for link_text, link_url in self._link_iterator(markdown_file):
-                if not only_local or not is_url(link_url):
+                if (not only_local or not is_url(link_url)) and link_text is not None:
                     link_path = os.path.join(path, link_url.split('#')[0])
                     if os.path.isdir(link_path):
                         link_path = os.path.join(link_path, 'README.md')
