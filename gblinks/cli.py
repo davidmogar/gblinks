@@ -4,7 +4,7 @@ import click
 import json
 import sys
 
-from gblinks import Gblinks
+from .gblinks import Gblinks
 
 def check_broken_links(gblinks, verbose):
     broken_links = gblinks.check_broken_links()
@@ -19,7 +19,6 @@ def check_broken_links(gblinks, verbose):
                 , fg='red'
             )
         )
-
         sys.exit(-2)
     else:
         click.echo('No broken links found in the given path')
@@ -47,7 +46,7 @@ def main(path, list, verbose):
             list_links(gblinks)
         else:
             check_broken_links(gblinks, verbose)
-    except ValueError, e:
+    except ValueError as e:
         click.echo(click.style(str(e), fg='red'))
         sys.exit(-1)
 
